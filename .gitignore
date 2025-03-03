@@ -1,2 +1,4 @@
 frontend/ui/node_modules/
 frontend/ui/.next/
+backend/.cache/go-build/
+
