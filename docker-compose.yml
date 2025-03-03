@@ -1,0 +1,54 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      target: dev
+    ports:
+      - "8080:8080"
+    container_name: go-backend
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=todo_db
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build:
+      context: frontend/ui
+      dockerfile: Dockerfile
+
+    ports:
+      - "3000:3000"
+    container_name: next-frontend
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    volumes:
+      - .:/app
+      - ${HOME}/.vscode-server-portfolio:/home/node/.vscode-server
+    command: sh -c "npm install && npm run dev"
+
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=todo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
