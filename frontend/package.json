@@ -5,10 +5,10 @@
     "private": true,
     "workspaces": [
         "shared/*",
-        "ui/*"
+        "ui"
     ],
     "scripts": {
-        "dev": "npm run workspace ui dev",
-        "storybook": "npm run workspace shared storybook"
+        "dev": "npm run dev -w ui",
+        "storybook": "npm run storybook -w shared --ci"
     }
 }
