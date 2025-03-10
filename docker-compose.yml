@@ -37,7 +37,7 @@ services:
 
   frontend:
     build:
-      context: frontend/ui
+      context: frontend
       dockerfile: Dockerfile
 
     ports:
@@ -50,6 +50,21 @@ services:
       - .:/app
       - ${HOME}/.vscode-server-portfolio:/home/node/.vscode-server
     command: sh -c "npm install && npm run dev"
+  
+  storybook:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - "6006:6006"
+    container_name: storybook-frontend
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+      - ${HOME}/.vscode-server-portfolio:/home/node/.vscode-server
+    command: sh -c "npm install && npm run storybook"
 
 
   postgres:
