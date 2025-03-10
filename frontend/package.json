@@ -1,0 +1,14 @@
+{
+    "name": "frontend",
+    "version": "1.0.0",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+        "shared/*",
+        "ui/*"
+    ],
+    "scripts": {
+        "dev": "npm run workspace ui dev",
+        "storybook": "npm run workspace shared storybook --ci"
+    }
+}
