@@ -32,7 +32,7 @@ services:
       - postgres
     volumes:
       - ./backend/django:/app
-    command: sh -c "./manage.py migrate && ./manage.py account_init_develop && ./manage.py runserver 0.0.0.0:8000"
+    command: sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"
     
 
   frontend:
