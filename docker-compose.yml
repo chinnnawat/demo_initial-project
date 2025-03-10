@@ -1,5 +1,5 @@
 services:
-  backend:
+  backend-golang:
     build:
       context: ./backend/golang
       target: dev
@@ -17,7 +17,23 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=todo_db
     volumes:
-      - ./backend:/app
+      - ./backend/golang:/app
+  backend-django:
+    build:
+      context: ./backend/django
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    container_name: django-backend
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend/django:/app
+    command: sh -c "./manage.py migrate && ./manage.py account_init_develop && ./manage.py runserver 0.0.0.0:8000"
+    
 
   frontend:
     build:
@@ -30,8 +46,6 @@ services:
     user: 1000:1000
     stdin_open: true
     tty: true
-    depends_on:
-      - backend
     volumes:
       - .:/app
       - ${HOME}/.vscode-server-portfolio:/home/node/.vscode-server
