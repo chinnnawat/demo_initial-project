@@ -9,6 +9,6 @@
     ],
     "scripts": {
         "dev": "npm run workspace ui dev",
-        "storybook": "npm run workspace shared storybook --ci"
+        "storybook": "npm run workspace shared storybook"
     }
 }
