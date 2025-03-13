@@ -10,5 +10,8 @@
     "scripts": {
         "dev": "npm run dev -w ui",
         "storybook": "npm run storybook -w shared --ci"
+    },
+    "dependencies": {
+        "next": "^15.2.2"
     }
 }
