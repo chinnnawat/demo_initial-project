@@ -1,8 +1,9 @@
 # Development stage
-FROM golang:1.24-alpine AS dev
+FROM golang:1.24 AS dev
+
 WORKDIR /app
 
-RUN apk add --no-cache git && go install github.com/air-verse/air@latest
+RUN go install github.com/air-verse/air@latest
 
 ENV GOPATH=/go
 ENV GOMODCACHE=/app/.cache/go-mod
@@ -15,22 +16,12 @@ RUN go mod download
 
 COPY . .
 
+RUN groupadd docker && useradd -m -s /bin/bash -G docker vscode
+
+RUN chown -R vscode:vscode /app
+
+USER vscode
+
 EXPOSE 8080
+
 CMD ["air"]
-
-
-# Production stage
-# FROM golang:1.24-alpine AS prod
-# WORKDIR /app
-# # Install shadow for adduser/addgroup if needed
-# RUN apk add --no-cache shadow
-# COPY go.mod go.sum ./golang/
-# COPY . .
-# RUN go build -o main .
-# # Add user and group (using Alpine-compatible commands)
-# RUN adduser --disabled-password --gecos "" vscode \
-#     && addgroup docker \
-#     && addgroup vscode docker
-# EXPOSE 8080
-# CMD ["./main"]
-# USER vscode
