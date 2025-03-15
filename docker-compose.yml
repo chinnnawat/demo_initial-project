@@ -40,9 +40,9 @@ services:
     ports:
       - "8081:8080"
     container_name: springboot-backend
-    # user: 1000:1000
-    # stdin_open: true
-    # tty: true
+    user: 1000:1000
+    stdin_open: true
+    tty: true
     depends_on:
       - postgres
     volumes:
