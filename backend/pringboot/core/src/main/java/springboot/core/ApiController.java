@@ -14,7 +14,7 @@ public class ApiController {
 	@GetMapping("/hello")
 	public ResponseEntity<Map<String, String>> hello() {
 		Map<String, String> response = new HashMap<>();
-		response.put("message", "Hello, World!");
+		response.put("message", "Hello, World Chin!");
 		return ResponseEntity.ok(response);
 	}
 
