@@ -40,15 +40,16 @@ services:
     ports:
       - "8081:8080"
     container_name: springboot-backend
-    user: 1000:1000
-    stdin_open: true
-    tty: true
+    # user: 1000:1000
+    # stdin_open: true
+    # tty: true
     depends_on:
       - postgres
     volumes:
-      - ./backend/pringboot/core:/app/core
+      - ./backend/pringboot/core:/app  # Mounts source code for live updates
       - ~/.m2:/root/.m2  # Cache Maven dependencies
     command: mvn spring-boot:run
+
 
     # command: sh -c "./mvnw spring-boot:run"
   # frontend:
