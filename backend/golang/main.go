@@ -11,6 +11,7 @@ type Todo struct {
 	ID    int    `json:"id" gorm:"primaryKey"`
 	Title string `json:"title"`
 	Done  bool   `json:"done"`
+	Name string `json:"name"`
 }
 
 var db *gorm.DB
