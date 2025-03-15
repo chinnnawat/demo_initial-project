@@ -34,18 +34,22 @@ services:
   #     - ./backend/django:/app
   #   command: sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"
   backend-springboot:
-      build:
-        context: ./backend/pringboot
-        dockerfile: Dockerfile
-      ports:
-        - "8081:8080"
-      container_name: springboot-backend
-      user: 1000:1000
-      stdin_open: true
-      tty: true
-      depends_on:
-        - postgres
-      # command: java -jar app.jar
+    build:
+      context: ./backend/pringboot
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    container_name: springboot-backend
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend/pringboot/core:/app/core
+      - ~/.m2:/root/.m2  # Cache Maven dependencies
+    command: mvn spring-boot:run
+
     # command: sh -c "./mvnw spring-boot:run"
   # frontend:
   #   build:
