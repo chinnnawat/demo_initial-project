@@ -1,0 +1,1 @@
+npm install <dependency> -w <workspace_name>
