@@ -1,4 +1,4 @@
 include:
-  - docker-compose-base.yml
+  # - docker-compose-base.yml
   - docker-compose-ui.yml
-  - docker-compose-core.yml
+  # - docker-compose-core.yml
