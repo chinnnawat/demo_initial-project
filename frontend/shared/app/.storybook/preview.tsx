@@ -1,6 +1,5 @@
 import type { Preview } from '@storybook/react';
 import React, { useEffect } from 'react';
-import 'preline'; // ✅ just import, DO NOT call it
 import '../src/index.css'; // CSS ที่มี Tailwind + Preline styles
 
 const withPreline = (Story: any) => {
