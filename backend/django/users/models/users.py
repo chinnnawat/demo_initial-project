@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from .users_manager import UserManager
 class User(models.Model):
     """
     User model to store user information.
@@ -12,5 +12,7 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     last_login = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
+
+    objects = UserManager()
     def __str__(self):
         return self.username
