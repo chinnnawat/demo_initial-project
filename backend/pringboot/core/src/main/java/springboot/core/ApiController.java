@@ -14,14 +14,14 @@ public class ApiController {
 	@GetMapping("/hello")
 	public ResponseEntity<Map<String, String>> hello() {
 		Map<String, String> response = new HashMap<>();
-		response.put("message", "Hello Developer, My name Chin");
+		response.put("message", "Hello World");
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/goodbye")
 	public ResponseEntity<Map<String, String>> goodbye() {
 		Map<String, String> response = new HashMap<>();
-		response.put("message", "Goodbye, World Chin nawat!");
+		response.put("message", "Goodbye, World!");
 		return ResponseEntity.ok(response);
 	}
 }
