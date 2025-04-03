@@ -27,6 +27,8 @@ func initDB() {
 	db.AutoMigrate(&Todo{})
 	if db.Migrator().HasTable(&Todo{}) && db.Find(&[]Todo{}).RowsAffected == 0 {
 		db.Create(&Todo{Title: "Learn Go", Done: false})
+		db.Create(&Todo{Title: "Learn Gin", Done: false})
+		db.Create(&Todo{Title: "Learn GORM", Done: false})
 		db.Create(&Todo{Title: "Build an API", Done: false})
 	}
 }
@@ -35,7 +37,7 @@ func main() {
 	initDB()
 	r := gin.Default()
 	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*") // Allow all origins
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		if c.Request.Method == "OPTIONS" {
@@ -58,5 +60,9 @@ func main() {
 		db.Create(&newTodo)
 		c.JSON(http.StatusCreated, newTodo)
 	})
+	r.GET("/hello", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "Hello, World!"})
+	})
+
 	r.Run(":8080")
 }
