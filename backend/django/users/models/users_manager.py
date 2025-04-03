@@ -1,12 +1,8 @@
 from django.db import models
 
 class UserManager(models.Manager):
-    """
-    Custom manager for User model.
-    """
-
-    def get_queryset(self):
+    def get_user_by_id(self, user_id):
         """
-        Returns the default queryset for the User model.
+        Get user by user_id.
         """
-        return self.filter(is_active=True)
+        return self.get(id=user_id)
