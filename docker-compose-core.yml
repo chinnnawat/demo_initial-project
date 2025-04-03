@@ -1,23 +1,24 @@
 services:
-  # backend-golang:
-  #   build:
-  #     context: ./backend/golang
-  #     target: dev
-  #   ports:
-  #     - "8080:8080"
-  #   container_name: go-backend
-  #   user: 1000:1000
-  #   stdin_open: true
-  #   tty: true
-  #   depends_on:
-  #     - postgres
-  #   environment:
-  #     - POSTGRES_HOST=postgres
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #     - POSTGRES_DB=postgres
-  #   volumes:
-  #     - ./backend/golang:/app
+  backend-golang:
+    build:
+      context: ./backend/golang
+      target: dev
+    ports:
+      - "8080:8080"
+    container_name: go-backend
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./backend/golang:/app
+      - ${HOME}/.vscode-server-resource-allocated-core-golang:/home/vscode/.vscode-server
   backend-django:
     build:
       context: ./backend/django

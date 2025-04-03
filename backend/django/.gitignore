@@ -1,1 +1,4 @@
 core/__pycache__/
+core/settings/__pycache__/
+otel/__pycache__/
+users/views/__pycache__/
