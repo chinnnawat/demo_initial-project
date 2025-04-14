@@ -1,24 +1,24 @@
 services:
-  backend-golang:
-    build:
-      context: ./backend/golang
-      target: dev
-    ports:
-      - "8080:8080"
-    container_name: go-backend
-    user: 1000:1000
-    stdin_open: true
-    tty: true
-    depends_on:
-      - postgres
-    environment:
-      - POSTGRES_HOST=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
-    volumes:
-      - ./backend/golang:/app
-      - ${HOME}/.vscode-server-resource-allocated-core-golang:/home/vscode/.vscode-server
+  # backend-golang:
+  #   build:
+  #     context: ./backend/golang
+  #     target: dev
+  #   ports:
+  #     - "8080:8080"
+  #   container_name: go-backend
+  #   user: 1000:1000
+  #   stdin_open: true
+  #   tty: true
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     - POSTGRES_HOST=postgres
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=postgres
+  #   volumes:
+  #     - ./backend/golang:/app
+  #     - ${HOME}/.vscode-server-resource-allocated-core-golang:/home/vscode/.vscode-server
   # backend-django:
   #   build:
   #     context: ./backend/django
@@ -37,20 +37,20 @@ services:
   #     - ./backend/django:/app
   #     - ${HOME}/.vscode-server-resource-allocated-core-django:/home/vscode/.vscode-server
   #   command: sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"
-  # backend-springboot:
-  #   build:
-  #     context: ./backend/pringboot
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8081:8080"
-  #   container_name: springboot-backend
-  #   user: 1000:1000
-  #   stdin_open: true
-  #   tty: true
-  #   depends_on:
-  #     - postgres
-  #   volumes:
-  #     - ./backend/pringboot/core:/app  # Mounts source code for live updates
-  #     - ${HOME}/.vscode-server-resource-allocated-core-springboot:/home/vscode/.vscode-server
-  #     - ~/.m2:/root/.m2  # Cache Maven dependencies
-  #   command: mvn spring-boot:run
+  backend-springboot:
+    build:
+      context: ./backend/pringboot
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    container_name: springboot-backend
+    user: 1000:1000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend/pringboot/core:/app  # Mounts source code for live updates
+      - ${HOME}/.vscode-server-resource-allocated-core-springboot:/home/vscode/.vscode-server
+      - ~/.m2:/root/.m2  # Cache Maven dependencies
+    command: mvn spring-boot:run
