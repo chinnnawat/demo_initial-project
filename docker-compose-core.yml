@@ -53,4 +53,4 @@ services:
       - ./backend/pringboot/core:/app  # Mounts source code for live updates
       - ${HOME}/.vscode-server-resource-allocated-core-springboot:/home/vscode/.vscode-server
       - ~/.m2:/root/.m2  # Cache Maven dependencies
-    command: mvn spring-boot:run
+    command: mvn spring-boot:run -Dspring-boot.run.main-class=springboot.core.CoreApplication

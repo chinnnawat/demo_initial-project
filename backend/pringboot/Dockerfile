@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y maven \
 
 COPY core/src /app/src
 
+RUN mvn clean
+
 RUN groupadd docker && useradd -m -s /bin/bash -G docker vscode
 
 RUN chown -R vscode:vscode /app
