@@ -18,7 +18,7 @@ COPY . .
 
 RUN groupadd -r docker && useradd -m -s /bin/bash -g docker vscode
 
-RUN chown -R vscode:docker /app
+# RUN chown -R vscode:docker /app
 
 USER vscode
 
